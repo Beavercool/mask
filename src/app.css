@@ -1,0 +1,61 @@
+.carousel-container {
+    margin-bottom: 20px;
+  }
+  
+  .carousel {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .container-with-dots {
+    position: relative;
+  }
+  
+  .carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .carousel-item img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .image-description {
+    margin-top: 10px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .search-container input[type='text'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .search-container button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .image-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
