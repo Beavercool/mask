@@ -2,15 +2,36 @@ import React, { useState } from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import './app.css';
+import axios from 'axios';
+
+const DEST_URL = 'http://localhost:3000/addImage'
+const SWAP_URL = 'http://localhost:3000/proc'
+const RES_URL = 'http://localhost:3000/res/'
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 const App = () => {
+  const [collectionId] = useState(getRandomInt(1024));
+
   const [userImages, setUserImages] = useState([]);
   const [serverImages, setServerImages] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [filteredImages, setFilteredImages] = useState([]);
 
-  const handleUpload = (event) => {
+  const handleUpload = async (event) => {
+    event.preventDefault()
     const files = Array.from(event.target.files);
+    files.map(async (f) => {
+      const formData = new FormData();
+        formData.append('img', f)
+        formData.append('collectionId', collectionId)
+        const upload = await axios.post(DEST_URL, formData)
+
+        console.log(upload);
+    })
+
     const uploadedImages = files.map((file) => ({
       url: URL.createObjectURL(file),
       description: '',
@@ -19,11 +40,18 @@ const App = () => {
   };
 
   const handleSwapFaces = async () => {
-    // Ваш код для запроса изображений с сервера NestJS и установки их в состояние serverImages
-    // Пример запроса к серверу:
-    // const response = await fetch('http://localhost:3000/images');
-    // const data = await response.json();
-    // setServerImages(data.images);
+    const res = await axios.post(SWAP_URL, {collectionId: collectionId})
+    
+    const arr = res.data
+    const ares = arr.map((v) => ({
+      url: RES_URL + v,
+      description: '',
+    }))
+    setServerImages([...ares])
+
+
+    // setUserImages((prevImages) => [...prevImages, ...uploadedImages]);
+
     console.log('Swap Faces');
   };
 
