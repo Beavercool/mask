@@ -82,8 +82,6 @@ const App = () => {
         <Carousel
           additionalTransfrom={0}
           arrows
-          autoPlay
-          autoPlaySpeed={3000}
           centerMode={false}
           className="carousel"
           containerClass="container-with-dots"
@@ -152,8 +150,6 @@ const App = () => {
         <Carousel
           additionalTransfrom={0}
           arrows
-          autoPlay
-          autoPlaySpeed={3000}
           centerMode={false}
           className="carousel"
           containerClass="container-with-dots"
